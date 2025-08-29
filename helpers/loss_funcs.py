@@ -18,7 +18,7 @@ def elbo_loss(
     dec_err = loss_fn(x_pred, ground_truth)
 
     if debug_info is not None:
-        debug_info["enc_err"].append(enc_err)
-        debug_info["dec_err"].append(dec_err)
+        debug_info["enc_err"].append(enc_err.detach().item())
+        debug_info["dec_err"].append(dec_err.detach().item())
 
     return enc_err * beta + dec_err
