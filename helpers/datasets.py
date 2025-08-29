@@ -19,9 +19,9 @@ def load_mnist(dataset_path, batch_size, **kwargs):
     )
 
     train_loader = DataLoader(
-        dataset=train_dataset, batch_size=batch_size, shuffle=False, **kwargs
+        dataset=train_dataset, batch_size=batch_size, shuffle=True, **kwargs
     )
     test_loader = DataLoader(
-        dataset=test_dataset, batch_size=batch_size, shuffle=False, **kwargs
+        dataset=test_dataset, batch_size=batch_size, shuffle=True, **kwargs
     )
     return train_loader, test_loader
