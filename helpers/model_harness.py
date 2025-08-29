@@ -2,7 +2,7 @@ import torch
 
 
 def train_single_pass(
-    data_loader: torch.data.utils.DataLoader,
+    data_loader: torch.utils.data.DataLoader,
     model: torch.nn.Module,
     loss_fn,
     optimizer,
