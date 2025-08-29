@@ -13,4 +13,4 @@ def elbo_loss(
     enc_err = -(0.5 * (1 + log_var - mean.pow(2) - log_var.exp())).sum(dim=1).mean()
     loss_fn = torch.nn.MSELoss()
     dec_err = loss_fn(x_pred, ground_truth)
-    return enc_err + beta * dec_err
+    return enc_err * beta + dec_err
