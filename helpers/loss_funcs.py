@@ -17,7 +17,7 @@ def elbo_loss(
     loss_fn = torch.nn.MSELoss()
     dec_err = loss_fn(x_pred, ground_truth)
 
-    if debug_info:
+    if debug_info is not None:
         debug_info["enc_err"].append(enc_err)
         debug_info["dec_err"].append(dec_err)
 
