@@ -5,7 +5,7 @@ import torch
 def show_reconstructions(model, data, unpack_out=lambda x: x, n=5):
     model.eval()
 
-    fig, axes = plt.subplots(3, n, figsize=(n * 2, 4))
+    fig, axes = plt.subplots(2, n, figsize=(n * 2, 4))
     for _, (x, _) in enumerate(data):
         with torch.no_grad():
             x = x[:n].to(next(model.parameters()).device)  # first n images
