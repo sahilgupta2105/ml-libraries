@@ -6,7 +6,7 @@ def elbo_loss(
     pred: tuple,
     beta: float,
     device: torch.device,
-    debug_info: None,
+    **kwargs,
 ):
     """ELBO loss function: reconstruction loss + KLD loss.
     debug_info: (optional) assumed to be a default dict.
@@ -17,8 +17,8 @@ def elbo_loss(
     loss_fn = torch.nn.MSELoss()
     dec_err = loss_fn(x_pred, ground_truth)
 
-    if debug_info is not None:
-        debug_info["enc_err"].append(enc_err.detach().item())
-        debug_info["dec_err"].append(dec_err.detach().item())
+    if 'debug_info' in kwargs:
+        kwargs['debug_info']["enc_err"].append(enc_err.detach().item())
+        kwargs['debug_info']["dec_err"].append(dec_err.detach().item())
 
     return enc_err * beta + dec_err

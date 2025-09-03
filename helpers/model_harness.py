@@ -7,6 +7,7 @@ def train_single_pass(
     loss_fn,
     optimizer,
     device,
+    **kwargs,
 ):
     """Trains the model for a single epoch, and return the average loss over the entire data."""
     model.train()
@@ -16,7 +17,7 @@ def train_single_pass(
         # TODO: need to generalize the reshape operation.
         X, y = X.reshape(-1, 784).to(device), y.to(device)
 
-        pred = model(X)
+        pred = model(X, **kwargs)
         loss = loss_fn(X, pred)
         loss_hist.append(loss.detach().item())
 
