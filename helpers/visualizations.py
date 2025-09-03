@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 
 
-def show_reconstructions(model, data, unpack_out=None, n=5):
+def show_reconstructions(model, data, unpack_out=lambda x: x, n=5):
     model.eval()
 
     fig, axes = plt.subplots(3, n, figsize=(n * 2, 4))
@@ -10,9 +10,7 @@ def show_reconstructions(model, data, unpack_out=None, n=5):
         with torch.no_grad():
             x = x[:n].to(next(model.parameters()).device)  # first n images
             # TODO: need to generalize the reshape operation.
-            out = model(x.reshape(-1, 784)).cpu()
-            if unpack_out:
-                out = unpack_out(out)
+            out = unpack_out(model(x.reshape(-1, 784))).cpu()
 
         for i in range(n):
             # TODO: need to generalize the reshape operation.
