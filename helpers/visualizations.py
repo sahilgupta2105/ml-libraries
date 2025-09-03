@@ -10,7 +10,7 @@ def show_reconstructions(model, data, n=5):
         with torch.no_grad():
             x = x[:n].to(next(model.parameters()).device)  # first n images
             # TODO: need to generalize the reshape operation.
-            out = model(x.reshape(-1, 784))[-1].cpu()
+            out = model(x.reshape(-1, 784))[0].cpu()
 
         for i in range(n):
             # TODO: need to generalize the reshape operation.
